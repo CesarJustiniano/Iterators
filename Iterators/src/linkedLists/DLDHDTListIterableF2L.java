@@ -35,24 +35,26 @@ public class DLDHDTListIterableF2L<E> extends DLDHDTList<E>
 		}
 
 		public boolean hasNext() {
-			// Write the new code....
-			return hasMoreElements; 
+			return current != null; 
 		}
 
 		public E next() throws NoSuchElementException {
-			// Write the new code....
 			if (!hasMoreElements) 
 				throw new NoSuchElementException("The iterator has finished."); 
 			
-			E etr = current.getElement(); 
-			try { 
-				current = theList.getNodeAfter(current); 
+			if(hasNext()){
+				E etr = current.getElement(); 
+				try { 
+					current = theList.getNodeAfter(current); 
+				}
+				catch(NodeOutOfBoundsException e) { 
+					current = null; 
+					hasMoreElements = false; 
+				}
+				return etr;
 			}
-			catch(NodeOutOfBoundsException e) { 
-				current = null; 
-				hasMoreElements = false; 
-			}
-			return etr;
+			
+			return null;
 		}
 
 		public void remove() throws UnsupportedOperationException, 
