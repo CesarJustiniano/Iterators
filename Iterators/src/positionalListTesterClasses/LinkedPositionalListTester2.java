@@ -55,7 +55,7 @@ public class LinkedPositionalListTester2 {
 
 	private static void showList2(String msg, LinkedPositionalList<Integer> list) {
 		System.out.print(msg); 
-		Iterator<Integer> iter = list.iterator(); 
+		Iterator<Integer> iter = list.iteratorBackwards(); 
 		while (iter.hasNext())
 			System.out.print(iter.next() + " "); 
 		System.out.println(" -- size = " + list.size()); 
